@@ -5,15 +5,8 @@ RSpec.describe RSpec::Core::Formatters::BaseFormatter do
   include FormatterSupport
 
   describe "start" do
-    before do
-      formatter.start 42, 3.234
-    end
-
-    it 'has captured example_count' do
-      expect(formatter.example_count).to eq 42
-    end
-
     it 'has captured load_time' do
+      send_notification :start, start_notification(42, 3.234)
       expect(formatter.load_time).to eq 3.234
     end
   end

@@ -37,10 +37,14 @@ module RSpec::Core
         formatter = double("formatter")
         example = double("example")
         reporter = Reporter.new(formatter)
+        reporter.register_listener formatter, :start
 
-        formatter.should_receive(:start).with(0,5)
+        expect(formatter).to receive(:start) do |notification|
+          expect(notification.count).to eq 3
+          expect(notification.load_time).to eq 5
+        end
         RSpec.configuration.start_time = 5
-        reporter.start 0, 10
+        reporter.start 3, 10
       end
     end
 

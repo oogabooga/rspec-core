@@ -5,12 +5,13 @@ module RSpec::Core
   # with information about a particular event of interest.
   module Notifications
 
-    # The `CountNotification` represents notifications sent by the formatter
-    # which a single numerical count attribute. Currently used to notify
-    # formatters of the expected number of examples.
+    # The `StartNotification` represents a notification sent by the reporter
+    # when the suite is started. It contains the expected amount of examples
+    # to be executed and the amount of time required to load them.
     #
     # @attr count [Fixnum] the number counted
-    CountNotification = Struct.new(:count)
+    # @attr load_time [Float] the number of seconds it took to load files
+    StartNotification = Struct.new(:count, :load_time)
 
     # The `ExampleNotification` represents notifications sent by the reporter
     # which contain information about the current (or soon to be) example.

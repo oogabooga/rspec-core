@@ -52,8 +52,8 @@ module FormatterSupport
     class_double "RSpec::Core::ExampleGroup", :description => "Group"
   end
 
-  def count_notification(count)
-   ::RSpec::Core::Notifications::CountNotification.new count
+  def start_notification(count, time = 0)
+   ::RSpec::Core::Notifications::StartNotification.new count, time
   end
 
   def example_notification(specific_example = example)
